@@ -148,30 +148,30 @@ test('should merge js and html files and save using multiple filename pattern', 
     t.deepEqual(firstCallArgs, [expectedOutputPath, expectedOutputData]);
 });
 
-// test('should merge module using filename and save using multiple filename pattern', t => {
-//     const fs = t.context.fs(dummyFs({
-//         './file/path/module.html': 'example html',
-//         './file/path/module.js': '// js content'
-//     }));
+test.only('should merge module using filename and save using multiple filename pattern', t => {
+    const fs = t.context.fs(dummyFs({
+        './file/path/module.html': 'example html',
+        './file/path/module.js': '// js content'
+    }));
 
-//     const config = {
-//         output: './output',
-//         fileName: 'merged-[name]-[name].html',
-//         processors: [
-//             new Html(),
-//             new Js(),
-//             new Css()
-//         ]
-//     };
-//     const sc = new AnyFileMerge(fs, config);
-//     sc.combine('./file/path/module.html');
+    const config = {
+        output: './output',
+        fileName: 'merged-[name]-[name].html',
+        processors: [
+            new Html(),
+            new Js(),
+            new Css()
+        ]
+    };
+    const sc = new AnyFileMerge(fs, config);
+    sc.combine('./file/path/module.html');
 
-//     const [firstCallArgs] = fs.writeFileSync.args;
+    const [firstCallArgs] = fs.writeFileSync.args;
 
-//     const expectedOutputPath = './output/path/merged-module-module.html';
-//     const expectedOutputData = 'example html\n<script>// js content</script>';
-//     t.deepEqual(firstCallArgs, [expectedOutputPath, expectedOutputData]);
-// });
+    const expectedOutputPath = './output/path/merged-module-module.html';
+    const expectedOutputData = 'example html\n<script>// js content</script>';
+    t.deepEqual(firstCallArgs, [expectedOutputPath, expectedOutputData]);
+});
 // test('should return module string if outputString is true', t => {
 
 // });

@@ -24,8 +24,12 @@ export class AnyFileMerge {
         const inputPath = path.module;
         const outputPath = path.output;
 
-        const modulePath = inputPath.dir.join('/');
-        
+        let modulePath = inputPath.dir;
+        if (inputPath.ext) {
+            modulePath = modulePath.concat([inputPath.name]);
+        }
+        modulePath = modulePath.join('/');
+
         const requiredModules = processors.filter(instance => instance.isRequired());
         const missingRequired = requiredModules
             .filter(instance => !this.fs.existsSync(`${modulePath}.${instance.extension()}`))
