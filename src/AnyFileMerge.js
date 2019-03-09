@@ -21,14 +21,7 @@ export class AnyFileMerge {
         const { output, processors, fileName } = this.config;
         const path = resolvePath(moduleInputPath, output);
 
-        const inputPath = path.module;
-        const outputPath = path.output;
-
-        let modulePath = inputPath.dir;
-        if (inputPath.ext) {
-            modulePath = modulePath.concat([inputPath.name]);
-        }
-        modulePath = modulePath.join('/');
+        const modulePath = path.input.modulePath.join('/');
 
         const requiredModules = processors.filter(instance => instance.isRequired());
         const missingRequired = requiredModules
@@ -44,7 +37,7 @@ export class AnyFileMerge {
             .map(instance => instance.transform(this.fs.readFileSync(`${modulePath}.${instance.extension()}`)))
             .join('\n');
 
-        const dir = outputPath.dir;
+        const dir = path.output.dir;
         deepPath(dir, '/')
             .forEach(path => {
                 try {
@@ -55,7 +48,7 @@ export class AnyFileMerge {
             });
 
         let outputFilenamePath = dir.join('/');
-        let { name } = inputPath;
+        let { name } = path.input;
         if (!name) {
             name = dir[dir.length - 1];
             outputFilenamePath = dir.slice(0, -1).join('/');

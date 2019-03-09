@@ -1169,9 +1169,9 @@ corresponding-path@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/corresponding-path/-/corresponding-path-1.0.0.tgz#ef2c6e515967e811dbe812dd72ff1efe7fff490a"
 
-corresponding-path@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/corresponding-path/-/corresponding-path-1.0.4.tgz#65a42f732a946ef04799e0803eb14d7babbee4ee"
+corresponding-path@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/corresponding-path/-/corresponding-path-1.0.5.tgz#6d61f609c4da2347201323c00374441addddac83"
 
 create-error-class@^3.0.0:
   version "3.0.2"
