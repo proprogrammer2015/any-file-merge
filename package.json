@@ -1,8 +1,8 @@
 {
-  "name": "svelte-module-combine",
-  "version": "1.0.3",
+  "name": "any-file-merge",
+  "version": "1.0.0",
   "main": "lib/index.js",
-  "repository": "git@github.com:proprogrammer2015/svelte-module-combine.git",
+  "repository": "git@github.com:proprogrammer2015/any-file-merge.git",
   "author": "Jacek Mankowski <it.developer.1992@gmail.com>",
   "license": "MIT",
   "scripts": {
