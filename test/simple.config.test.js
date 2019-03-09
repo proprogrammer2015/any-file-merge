@@ -20,7 +20,7 @@ test.beforeEach(t => {
     t.context.fs = create;
 });
 
-test('should combine js and html files of the module when js file was saved', t => {
+test('should combine js and html files of the module when module was saved', t => {
     const fs = t.context.fs(dummyFs({
         './file/path/module.html': 'example html',
         './file/path/module.js': '// js content'
@@ -28,6 +28,22 @@ test('should combine js and html files of the module when js file was saved', t 
 
     const sc = new AnyFileMerge(fs, config);
     sc.combine('./file/path/module');
+
+    const [firstCallArgs] = fs.writeFileSync.args;
+
+    const expectedOutputPath = './output/path/module.html';
+    const expectedOutputData = 'example html\n<script>// js content</script>';
+    t.deepEqual(firstCallArgs, [expectedOutputPath, expectedOutputData]);
+});
+
+test('should combine js and html files of the module when js file was saved', t => {
+    const fs = t.context.fs(dummyFs({
+        './file/path/module.html': 'example html',
+        './file/path/module.js': '// js content'
+    }));
+
+    const sc = new AnyFileMerge(fs, config);
+    sc.combine('./file/path/module.js');
 
     const [firstCallArgs] = fs.writeFileSync.args;
 

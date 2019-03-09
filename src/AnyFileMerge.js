@@ -47,11 +47,12 @@ export class AnyFileMerge {
                 }
             });
 
-        let outputFilenamePath = dir.join('/');
+        let outputFilenamePath = dir;
+
         let { name } = path.input;
         if (!name) {
             name = dir[dir.length - 1];
-            outputFilenamePath = dir.slice(0, -1).join('/');
+            outputFilenamePath = dir.slice(0, -1);
         }
 
         let outputFileName = `${name}${fileName}`;
@@ -59,6 +60,6 @@ export class AnyFileMerge {
             outputFileName = `${fileName}`.replace(this.filenamePlaceholder, name);
         }
 
-        this.fs.writeFileSync(`${outputFilenamePath}/${outputFileName}`, outputData);
+        this.fs.writeFileSync(`${outputFilenamePath.join('/')}/${outputFileName}`, outputData);
     }
 }
